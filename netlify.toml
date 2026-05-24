@@ -1,0 +1,15 @@
+[build]
+  base    = "webapp/frontend"
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from   = "/api/*"
+  to     = "http://167.71.23.91:3001/api/:splat"
+  status = 200
+  force  = true
+
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
