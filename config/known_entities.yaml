@@ -1,0 +1,104 @@
+# Mapping de Discord handle ↔ personaje jugado.
+# `discord_handle` es como aparece en messages/*.md (author).
+# Si un jugador no escribe en Discord (sólo voz), `discord_handle` queda null.
+
+players_to_characters:
+  Dreizen:
+    role: DM
+    characters: []
+  Niky:
+    role: player
+    characters:
+      - Aimee
+  Dani:
+    role: player
+    characters:
+      - Alexia
+  FeydCB:
+    role: player
+    characters:
+      - Yul
+  Nah 冬月:
+    role: player
+    characters:
+      - Sylvean
+  So:
+    role: player
+    characters:
+      - Orion
+  # Jugadores sin actividad en chat (todo por voz):
+  __player_a__:
+    discord_handle: null
+    role: player
+    characters:
+      - Osito
+  __player_b__:
+    discord_handle: null
+    role: player
+    characters:
+      - Fafy
+
+playable_characters:
+  - name: Aimee
+    slug: aimee
+    player: Niky
+    discord_handle: Niky
+    aliases:
+      - Aimé
+      - Aimí
+  - name: Alexia
+    slug: alexia
+    player: Dani
+    discord_handle: Dani
+    aliases:
+      - Ale
+      - Lexi
+      - lexi
+  - name: Yul
+    slug: yul
+    player: FeydCB
+    discord_handle: FeydCB
+    aliases: []
+  - name: Osito
+    slug: osito
+    player: null
+    discord_handle: null
+    aliases: []
+  - name: Sylvean
+    slug: sylvean
+    player: Nah 冬月
+    discord_handle: Nah 冬月
+    aliases: []
+  - name: Fafy
+    slug: fafy
+    player: null
+    discord_handle: null
+    aliases:
+      - Fafi
+      - Faffy
+  - name: Orion
+    slug: orion
+    player: So
+    discord_handle: So
+    aliases:
+      - Orión
+
+# Handles de Discord que aparecen pero NO son jugadores fijos:
+guest_handles:
+  - corna
+  - Ambush👻🎃
+  - MEE6  # bot
+
+npcs_categories_seen:
+  - Nómades
+  - Phandalin
+  - Semidioses y dioses
+
+# Aliases por NPC (slug del stub → lista de alternativas).
+# Se aplican en extract_entities (para sumar menciones bajo un solo nombre canónico)
+# y en build_stubs (para escribir aliases en el frontmatter de clean/npcs/*.md).
+npc_aliases:
+  niberath:
+    - Niverath  # typo recurrente en el corpus (67 menciones)
+  morph:
+    - Blaze     # Dreizen confirmó en chat: "blaze y Morph son la misma persona"

@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root {
+    height: 100%;
+  }
+  body {
+    background:
+      radial-gradient(ellipse at top left,  rgba(40,30,20,0.5), transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(15,10,30,0.7), transparent 60%),
+      linear-gradient(180deg, #1a120a 0%, #0e0a05 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Cinzel', serif;
+    color: theme('colors.gold.500');
+    letter-spacing: 0.03em;
+  }
+  a { color: theme('colors.gold.400'); }
+  a:hover { color: theme('colors.gold.500'); text-decoration: underline; }
+}
+
+@layer components {
+  /* Hoja de pergamino con bordes “quemados” */
+  .parchment {
+    background-image: theme('backgroundImage.page-tex');
+    color: theme('colors.ink.700');
+    border-radius: 4px;
+    box-shadow: theme('boxShadow.parchment');
+    position: relative;
+  }
+  .parchment::before,
+  .parchment::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 4px;
+  }
+  .parchment::before {
+    background:
+      radial-gradient(ellipse at 0% 0%,   rgba(60,30,10,0.18), transparent 30%),
+      radial-gradient(ellipse at 100% 0%, rgba(60,30,10,0.18), transparent 30%),
+      radial-gradient(ellipse at 0% 100%, rgba(60,30,10,0.22), transparent 30%),
+      radial-gradient(ellipse at 100% 100%, rgba(60,30,10,0.22), transparent 30%);
+  }
+  .parchment::after {
+    border: 1px solid rgba(120, 80, 30, 0.35);
+    box-shadow: inset 0 0 0 1px rgba(255, 220, 150, 0.25);
+  }
+
+  /* Botón de hierro / oro */
+  .btn-arcane {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-sm font-display tracking-wider uppercase text-sm transition;
+    background: linear-gradient(180deg, #3b2614 0%, #1c130a 100%);
+    color: theme('colors.gold.400');
+    border: 1px solid theme('colors.gold.600');
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,210,120,0.15);
+  }
+  .btn-arcane:hover {
+    background: linear-gradient(180deg, #4a3019 0%, #251608 100%);
+    color: theme('colors.gold.500');
+  }
+  .btn-arcane[data-active="true"] {
+    background: linear-gradient(180deg, #c9a44e 0%, #7e6020 100%);
+    color: theme('colors.ink.900');
+  }
+
+  /* Tipografía dentro de la wiki (parchment) */
+  .prose-arcane h1,
+  .prose-arcane h2,
+  .prose-arcane h3 {
+    color: theme('colors.wine.700');
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.04em;
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
+  }
+  .prose-arcane h1 { font-size: 2rem; border-bottom: 1px solid rgba(120,80,30,0.4); padding-bottom: 0.3em; }
+  .prose-arcane h2 { font-size: 1.5rem; }
+  .prose-arcane h3 { font-size: 1.2rem; }
+  .prose-arcane p  { margin: 0.7em 0; line-height: 1.65; font-size: 1.05rem; }
+  .prose-arcane a  { color: theme('colors.wine.600'); text-decoration: underline; text-decoration-color: rgba(120,80,30,0.4); }
+  .prose-arcane a:hover { color: theme('colors.wine.700'); }
+  .prose-arcane ul, .prose-arcane ol { padding-left: 1.5em; margin: 0.6em 0; }
+  .prose-arcane li { margin: 0.2em 0; }
+  .prose-arcane code { background: rgba(60,30,10,0.08); padding: 0 0.3em; border-radius: 2px; }
+  .prose-arcane blockquote { border-left: 3px solid theme('colors.gold.500'); padding-left: 1em; color: theme('colors.ink.500'); font-style: italic; }
+  .prose-arcane hr { border: none; border-top: 1px dashed rgba(120,80,30,0.45); margin: 1.5em 0; }
+
+  /* Comentarios HTML autogen quedan ocultos */
+  .prose-arcane > p:has(> em:only-child) { color: theme('colors.ink.500'); font-style: italic; }
+}
